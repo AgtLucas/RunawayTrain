@@ -1,22 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, {
   AppRegistry,
   Component,
   StyleSheet,
   Text,
   ActivityIndicatorIOS,
+  Dimensions,
   View
 } from 'react-native'
 
 import Swiper from 'react-native-swiper'
+import NetworkImage from 'react-native-image-progress'
+import Progress from 'react-native-progress'
 import { uniqueRandonNumber } from './utils/random-manager'
 
 const NUM_WALLPAPERS = 5
+
+let { width, height } = Dimensions.get('window')
 
 class RunawayTrain extends Component {
   constructor () {
@@ -76,7 +75,15 @@ class RunawayTrain extends Component {
           >
           {wallsJSON.map((wallpaper, index) => {
             return (
-              <Text key={index}>{wallpaper.id}</Text>
+              <View key={index}>
+                <NetworkImage
+                  source={{uri: `https://unsplash.it/${wallpaper.width}/${wallpaper.height}?image=${wallpaper.id}`}}
+                  indicator={Progress.Circle}
+                  style={styles.wallpaperImage}
+                  >
+
+                </NetworkImage>
+              </View>
             )
           })}
         </Swiper>
@@ -119,12 +126,17 @@ const styles = StyleSheet.create({
   },
   swiperActiveDot: {
     backgroundColor: '#fff',
-    width: 13,
-    height: 13,
-    borderRadius: 7,
-    marginTop: 7,
-    marginRight: 7,
-    marginLeft: 7
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    marginRight: 6,
+    marginLeft: 6
+  },
+  wallpaperImage: {
+    flex: 1,
+    width: width,
+    height: height,
+    backgroundColor: '#000'
   }
 })
 
