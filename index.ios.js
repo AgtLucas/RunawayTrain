@@ -13,6 +13,7 @@ import React, {
   View
 } from 'react-native'
 
+import Swiper from 'react-native-swiper'
 import { uniqueRandonNumber } from './utils/random-manager'
 
 const NUM_WALLPAPERS = 5
@@ -68,13 +69,17 @@ class RunawayTrain extends Component {
 
     if (!isLoading) {
       return (
-        <View>
+        <Swiper
+          dot={<View style={styles.swiperDot} />}
+          activeDot={<View style={styles.swiperActiveDot} />}
+          loop={false}
+          >
           {wallsJSON.map((wallpaper, index) => {
             return (
               <Text key={index}>{wallpaper.id}</Text>
             )
           })}
-        </View>
+        </Swiper>
       )
     }
   }
@@ -97,6 +102,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#08C'
+  },
+  swiperDot: {
+    backgroundColor: 'rgba(255,255,255,.4)',
+    width: 8,
+    height: 8,
+    borderRadius: 10,
+    marginTop: 3,
+    marginRight: 3,
+    marginBottom: 3,
+    marginLeft: 3
+  },
+  swiperActiveDot: {
+    backgroundColor: '#fff',
+    width: 13,
+    height: 13,
+    borderRadius: 7,
+    marginTop: 7,
+    marginRight: 7,
+    marginLeft: 7
   }
 })
 
