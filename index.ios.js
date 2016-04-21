@@ -9,11 +9,64 @@ import React, {
   Component,
   StyleSheet,
   Text,
+  AcitivityIndicatorIOS,
   View
 } from 'react-native'
 
 class RunawayTrain extends Component {
+  constructor () {
+    super()
+    this.state = {
+      wallsJSON: [],
+      isLoading: false
+    }
+  }
+
+  componentDidMount () {
+    this.fetchWallsJSON()
+  }
+
+  fetchWallsJSON () {
+    let url = 'https://unsplash.it/list'
+
+    fetch(url)
+      .then(response => response.json())
+      .then(jsonData => {
+        console.log(jsonData)
+      })
+      .catch(error => console.log(`Fetch error: ${error}`))
+  }
+
+  renderLoadingMessage () {
+    return (
+      <View style={styles.loadingContainer}>
+        <AcitivityIndicatorIOS
+          animating={true}
+          color={'#FFF'}
+          size={'small'}
+          style={{margin: 15}} />
+        <Text style={{color: '#fff'}}>Unsplash &copy;</Text>
+      </View>
+    )
+  }
+
+  renderResults () {
+    return (
+      <View>
+        <Text>Data loaded</Text>
+      </View>
+    )
+  }
+
   render () {
+    let { isLoading } = this.state
+
+    if (isLoading) {
+      return this.renderLoadingMessage()
+    } else {
+      return this.renderResults()
+    }
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
