@@ -79,9 +79,14 @@ class RunawayTrain extends Component {
                 <NetworkImage
                   source={{uri: `https://unsplash.it/${wallpaper.width}/${wallpaper.height}?image=${wallpaper.id}`}}
                   indicator={Progress.Circle}
-                  style={styles.wallpaperImage}
-                  >
-
+                  indicatorProps={{
+                    color: 'rgba(255, 255, 255)',
+                    size: 60,
+                    thickness: 7
+                  }}
+                  style={styles.wallpaperImage}>
+                  <Text style={styles.label}>Photo by</Text>
+                  <Text style={styles.authorNameLabel}>{wallpaper.author}</Text>
                 </NetworkImage>
               </View>
             )
@@ -126,17 +131,40 @@ const styles = StyleSheet.create({
   },
   swiperActiveDot: {
     backgroundColor: '#fff',
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    marginRight: 6,
-    marginLeft: 6
+    width: 13,
+    height: 13,
+    borderRadius: 7,
+    marginRight: 7,
+    marginLeft: 7
   },
   wallpaperImage: {
     flex: 1,
     width: width,
     height: height,
     backgroundColor: '#000'
+  },
+  label: {
+    position: 'absolute',
+    color: '#fff',
+    fontSize: 13,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    padding: 2,
+    paddingLeft: 5,
+    top: 20,
+    left: 20,
+    width: width / 2
+  },
+  authorNameLabel: {
+    position: 'absolute',
+    color: '#fff',
+    fontSize: 15,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    padding: 2,
+    paddingLeft: 5,
+    top: 41,
+    left: 20,
+    fontWeight: 'bold',
+    width: width / 2
   }
 })
 
