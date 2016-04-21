@@ -13,7 +13,7 @@ import React, {
   View
 } from 'react-native'
 
-import { uniqueRandonNumber, randomNumberInRange } from './utils/random-manager'
+import { uniqueRandonNumber } from './utils/random-manager'
 
 const NUM_WALLPAPERS = 5
 
