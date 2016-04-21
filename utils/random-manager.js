@@ -2,14 +2,13 @@ const uniqueRandonNumber = (numRandomNumbers, lowerLimit, upperLimit) => {
   let uniqueNumbers = []
 
   while (uniqueNumbers.length !== numRandomNumbers) {
-    let currentRandomNumbers = this.randomNumberInRange(lowerLimit, upperLimit)
+    let currentRandomNumbers = randomNumberInRange(lowerLimit, upperLimit)
 
     if (uniqueNumbers.indexOf(currentRandomNumbers) === -1) {
       uniqueNumbers.push(currentRandomNumbers)
     }
-
-    return uniqueNumbers
   }
+  return uniqueNumbers
 }
 
 const randomNumberInRange = (lowerLimit, upperLimit) => {

@@ -13,6 +13,8 @@ import React, {
   View
 } from 'react-native'
 
+import { uniqueRandonNumber, randomNumberInRange } from './utils/random-manager'
+
 const NUM_WALLPAPERS = 5
 
 class RunawayTrain extends Component {
@@ -35,8 +37,14 @@ class RunawayTrain extends Component {
       .then(response => response.json())
       .then(jsonData => {
         console.log(jsonData)
+        let randomIds = uniqueRandonNumber(NUM_WALLPAPERS, 0, jsonData.length)
+        let walls = []
+        randomIds.forEach(randomId => {
+          walls.push(jsonData[randomId])
+        })
         this.setState({
-          isLoading: false
+          isLoading: false,
+          wallsJSON: [].concat(walls)
         })
       })
       .catch(error => console.log(`Fetch error: ${error}`))
@@ -56,11 +64,17 @@ class RunawayTrain extends Component {
   }
 
   renderResults () {
-    return (
-      <View>
-        <Text>Data loaded</Text>
-      </View>
-    )
+    let { wallsJSON, isLoading } = this.state
+
+    if (!isLoading) {
+      return (
+        <View>
+          {wallsJSON.map((wallpaper, index) => {
+            <Text key={index}>{wallpaper.id}</Text>
+          })}
+        </View>
+      )
+    }
   }
 
   render () {
