@@ -34,8 +34,10 @@ class RunawayTrain extends Component {
       prevTouchY: 0,
       prevTouchTimeStamp: 0
     }
+    this.currentWallIndex = 0
 
     this.handlePanResponderGrant = this.handlePanResponderGrant.bind(this)
+    this.onMomentumScrollEnd = this.onMomentumScrollEnd.bind(this)
   }
 
   componentDidMount () {
@@ -59,7 +61,7 @@ class RunawayTrain extends Component {
     let currentTouchTimeStamp = Date.now()
 
     if (this.isDoubleTap(currentTouchTimeStamp, gestureState)) {
-      console.log('Double tap detected.')
+      this.saveCurrentWallpaperToCameraRoll()
     }
 
     this.prevTouchInfo = {
@@ -80,8 +82,12 @@ class RunawayTrain extends Component {
     return (dt < DOUBLE_TAP_DELAY && distance(prevTouchX, prevTouchY, x0, y0) < DOUBLE_TAP_RADIUS)
   }
 
-  onMomentumScrollEnd () {
-    console.log(123)
+  saveCurrentWallpaperToCameraRoll () {
+
+  }
+
+  onMomentumScrollEnd (e, state, context) {
+    this.currentWallIndex = state.index
   }
 
   fetchWallsJSON () {
