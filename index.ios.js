@@ -13,6 +13,8 @@ import React, {
   View
 } from 'react-native'
 
+const NUM_WALLPAPERS = 5
+
 class RunawayTrain extends Component {
   constructor () {
     super()
