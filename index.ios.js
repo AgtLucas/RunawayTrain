@@ -13,8 +13,11 @@ import Swiper from 'react-native-swiper'
 import NetworkImage from 'react-native-image-progress'
 import Progress from 'react-native-progress'
 import { uniqueRandonNumber } from './utils/random-manager'
+import distance from './utils/distance'
 
 const NUM_WALLPAPERS = 5
+const DOUBLE_TAP_DELAY = 300
+const DOUBLE_TAP_RADIUS = 20
 
 let { width, height } = Dimensions.get('window')
 
@@ -26,6 +29,13 @@ class RunawayTrain extends Component {
       isLoading: true
     }
     this.imagePanResponder = {}
+    this.prevTouchInfo = {
+      prevTouchX: 0,
+      prevTouchY: 0,
+      prevTouchTimeStamp: 0
+    }
+
+    this.handlePanResponderGrant = this.handlePanResponderGrant.bind(this)
   }
 
   componentDidMount () {
@@ -46,11 +56,32 @@ class RunawayTrain extends Component {
   }
 
   handlePanResponderGrant (e, gestureState) {
-    console.log('Finger touched the image!')
+    let currentTouchTimeStamp = Date.now()
+
+    if (this.isDoubleTap(currentTouchTimeStamp, gestureState)) {
+      console.log('Double tap detected.')
+    }
+
+    this.prevTouchInfo = {
+      prevTouchX: gestureState.x0,
+      prevTouchY: gestureState.y0,
+      prevTouchTimeStamp: currentTouchTimeStamp
+    }
   }
 
   handlePanResponderEnd (e, gestureState) {
     console.log('Finger pulled up from the image.')
+  }
+
+  isDoubleTap (currentTouchTimeStamp, {x0, y0}) {
+    let { prevTouchX, prevTouchY, prevTouchTimeStamp } = this.prevTouchInfo
+    let dt = currentTouchTimeStamp - prevTouchTimeStamp
+
+    return (dt < DOUBLE_TAP_DELAY && distance(prevTouchX, prevTouchY, x0, y0) < DOUBLE_TAP_RADIUS)
+  }
+
+  onMomentumScrollEnd () {
+    console.log(123)
   }
 
   fetchWallsJSON () {
@@ -118,10 +149,6 @@ class RunawayTrain extends Component {
         </Swiper>
       )
     }
-  }
-
-  onMomentumScrollEnd () {
-    console.log(123)
   }
 
   render () {
