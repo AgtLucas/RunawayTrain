@@ -37,7 +37,6 @@ class RunawayTrain extends Component {
     fetch(url)
       .then(response => response.json())
       .then(jsonData => {
-        console.log(jsonData)
         let randomIds = uniqueRandonNumber(NUM_WALLPAPERS, 0, jsonData.length)
         let walls = []
         randomIds.forEach(randomId => {
@@ -73,6 +72,7 @@ class RunawayTrain extends Component {
           dot={<View style={styles.swiperDot} />}
           activeDot={<View style={styles.swiperActiveDot} />}
           loop={false}
+          onMomentumScrollEnd={this.onMomentumScrollEnd}
           >
           {wallsJSON.map((wallpaper, index) => {
             return (
@@ -82,6 +82,10 @@ class RunawayTrain extends Component {
         </Swiper>
       )
     }
+  }
+
+  onMomentumScrollEnd () {
+    console.log(123)
   }
 
   render () {
