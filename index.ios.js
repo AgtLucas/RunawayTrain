@@ -9,7 +9,7 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  AcitivityIndicatorIOS,
+  ActivityIndicatorIOS,
   View
 } from 'react-native'
 
@@ -40,7 +40,7 @@ class RunawayTrain extends Component {
   renderLoadingMessage () {
     return (
       <View style={styles.loadingContainer}>
-        <AcitivityIndicatorIOS
+        <ActivityIndicatorIOS
           animating={true}
           color={'#FFF'}
           size={'small'}
