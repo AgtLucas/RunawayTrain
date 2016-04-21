@@ -70,7 +70,9 @@ class RunawayTrain extends Component {
       return (
         <View>
           {wallsJSON.map((wallpaper, index) => {
-            <Text key={index}>{wallpaper.id}</Text>
+            return (
+              <Text key={index}>{wallpaper.id}</Text>
+            )
           })}
         </View>
       )
