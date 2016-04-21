@@ -18,7 +18,7 @@ class RunawayTrain extends Component {
     super()
     this.state = {
       wallsJSON: [],
-      isLoading: false
+      isLoading: true
     }
   }
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000'
+    backgroundColor: '#08C'
   }
 })
 
