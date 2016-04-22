@@ -14,6 +14,7 @@ import React, {
 import Swiper from 'react-native-swiper'
 import NetworkImage from 'react-native-image-progress'
 import Progress from 'react-native-progress'
+import ShakeEvent from 'react-native-shake-event-ios'
 import { uniqueRandonNumber } from './utils/random-manager'
 import distance from './utils/distance'
 import ProgressHUD from './components/ProgressHUD'
@@ -55,6 +56,21 @@ class RunawayTrain extends Component {
       onPanResponderRelease: this.handlePanResponderEnd,
       onPanResponderTerminate: this.handlePanResponderEnd
     })
+
+    ShakeEvent.addEventListener('shake', () => {
+      this.initialize()
+      this.fetchWallsJSON()
+    })
+  }
+
+  initialize () {
+    this.setState({
+      wallsJSON: [],
+      isLoading: true,
+      isHudVisible: false
+    })
+
+    this.currentWallIndex = 0
   }
 
   handleStartShouldSetPanResponder (e, gestureState) {
