@@ -25,7 +25,7 @@ class ProgressHUD extends Component {
             height: height,
             top: 0,
             left: 0,
-            backgroundColor: 'rbga(0, 0, 0, 0.5)'
+            backgroundColor: 'rgba(0, 0, 0, .5)'
           }}>
           <ActivityIndicatorIOS
             animating={true}

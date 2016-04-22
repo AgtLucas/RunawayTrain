@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#08C'
   },
   swiperDot: {
-    backgroundColor: 'rgba(255,255,255,.4)',
+    backgroundColor: 'rgba(255, 255, 255, .4)',
     width: 8,
     height: 8,
     borderRadius: 10,
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#fff',
     fontSize: 13,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, .8)',
     padding: 2,
     paddingLeft: 5,
     top: 20,
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#fff',
     fontSize: 15,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, .8)',
     padding: 2,
     paddingLeft: 5,
     top: 41,
