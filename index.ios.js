@@ -162,12 +162,12 @@ class RunawayTrain extends Component {
             >
             {wallsJSON.map((wallpaper, index) => {
               return (
-                <View key={index}>
+                <View key={wallpaper.id}>
                   <NetworkImage
                     source={{uri: `https://unsplash.it/${wallpaper.width}/${wallpaper.height}?image=${wallpaper.id}`}}
                     indicator={Progress.Circle}
                     indicatorProps={{
-                      color: 'rgba(255, 255, 255)',
+                      color: 'rgba(255, 255, 255, 1)',
                       size: 60,
                       thickness: 7
                     }}
