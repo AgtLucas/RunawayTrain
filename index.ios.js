@@ -6,6 +6,8 @@ import React, {
   ActivityIndicatorIOS,
   Dimensions,
   PanResponder,
+  CameraRoll,
+  AlertIOS,
   View
 } from 'react-native'
 
@@ -83,7 +85,24 @@ class RunawayTrain extends Component {
   }
 
   saveCurrentWallpaperToCameraRoll () {
+    let { wallsJSON } = this.state
+    let currentWall = wallsJSON[this.currentWallIndex]
+    let currentWallUrl = `http://unsplash.it/${currentWall.width}/${currentWall.height}?image=${currentWall.id}`
 
+    CameraRoll.saveImageWithTag(currentWallUrl)
+      .then(data => {
+        AlertIOS.alert(
+          'Saved!',
+          'Wallpaper successfully saved to Camera Roll',
+          [
+            {
+              text: 'High 5!',
+              onPress: () => console.log('Ok, pressed!')
+            }
+          ]
+        )
+      })
+      .catch(err => console.log('Error saving to Camera Roll', err))
   }
 
   onMomentumScrollEnd (e, state, context) {
